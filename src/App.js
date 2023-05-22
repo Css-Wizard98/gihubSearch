@@ -97,6 +97,9 @@ function App() {
   }
 
   function getpaginationData() {
+    if(!inputRef.current.value){
+      return;
+    }
     console.log(pagination);
     setisAscending(null);
     setFilter(null);
@@ -124,6 +127,7 @@ function App() {
       })
       .catch(error => {
         console.log(error);
+        setShowLoader(true);
         alert(error);
       });
   }
