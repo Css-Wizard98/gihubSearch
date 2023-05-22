@@ -91,6 +91,7 @@ function App() {
         .catch(error => {
           console.log(error);
           alert(error);
+          setShowLoader(false);
         });
     }, 500));
   }
