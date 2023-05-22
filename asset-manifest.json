@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/gihubSearch/static/css/main.7b28730a.css",
+    "main.js": "/gihubSearch/static/js/main.d3c078ac.js",
+    "static/js/787.f5509203.chunk.js": "/gihubSearch/static/js/787.f5509203.chunk.js",
+    "static/media/Spinner-1s-200px.gif": "/gihubSearch/static/media/Spinner-1s-200px.2baf1655ed31318d4b97.gif",
+    "index.html": "/gihubSearch/index.html",
+    "static/media/icons8-search.svg": "/gihubSearch/static/media/icons8-search.76ca1258cf1f6e6a7717db2383aea5f1.svg",
+    "main.7b28730a.css.map": "/gihubSearch/static/css/main.7b28730a.css.map",
+    "main.d3c078ac.js.map": "/gihubSearch/static/js/main.d3c078ac.js.map",
+    "787.f5509203.chunk.js.map": "/gihubSearch/static/js/787.f5509203.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7b28730a.css",
+    "static/js/main.d3c078ac.js"
+  ]
+}
