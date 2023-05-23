@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import loader from "./utils/Spinner-1s-200px.gif";
 import seachIcon from "./utils/icons8-search.svg";
 import filterIcon from "./utils/empty-filter-32.png";
+import Sidebar from './sidebar';
 
 function App() {
   const [searchString, setSearchstring] = useState();
@@ -38,14 +39,14 @@ function App() {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [showLoader, pagination, repo, stoppagination]);
+  }, [showLoader, pagination, repo, stoppagination,filter,isAscending]);
 
   useEffect(()=>{
-    if(!tempRepo.length){
+    if(!tempRepo.length && filter){
       console.log("copying repo");
       setTemprepo([...repo]);
     }
-  },[filter]);
+  },[filter,tempRepo,repo]);
 
   function searchhandler(event, is_pagination) {
     setisAscending(null);
@@ -100,13 +101,12 @@ function App() {
     if(!inputRef.current.value){
       return;
     }
-    console.log(pagination);
-    setisAscending(null);
-    setFilter(null);
     if(tempRepo.length){
       setRepo([...tempRepo]);
       setTemprepo([]);
     }
+    setisAscending(null);
+    setFilter(null);
     setPagination(prev => prev + 1);
     setShowLoader(true);
     // return;
@@ -218,34 +218,7 @@ function App() {
         <img className='loader' height="25px" width="25px" src={loader} alt="spinner" />
       </div>}
 
-      {showPouup && <div className='overLay'>
-        <div className='content'>
-          <div className='popupheader'>
-            <h1 style={{ color: 'black' }}>Filter</h1>
-            <img className='crossIcon' width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/multiply.png" alt="multiply" onClick={()=> setshowPouup(false)}/>
-          </div>
-          <ul>
-            <li onClick={()=> setFilter('stargazers_count')} className={`${filter=='stargazers_count'?'Active':''}`}>STARS</li>
-            <li onClick={()=> setFilter('watchers_count')} className={`${filter=='watchers_count'?'Active':''}`}>watchers count</li>
-            <li onClick={()=> setFilter('score')} className={`${filter=='score'?'Active':''}`}>score</li>
-            <li onClick={()=> setFilter('name')} className={`${filter=='name'?'Active':''}`}>name</li>
-            <li onClick={()=> setFilter('created_at')} className={`${filter=='created_at'?'Active':''}`}>created at</li>
-            <li onClick={()=> setFilter('updated_at')} className={`${filter=='updated_at'?'Active':''}`}>updatedat</li>
-          </ul>
-          <hr />
-          <ul>
-            <li onClick={()=> setisAscending(1)} className={`${isAscending == 1?'Active':''}`}>
-              ascending
-            </li>
-            <li onClick={()=> setisAscending(0)} className={`${isAscending == 0?'Active':''}`}>
-              descending
-            </li>
-          </ul>
-          <div className='filterbtnDiv'>
-          <span onClick={applyFilter}>Apply</span><span onClick={clearFilter}>Clear</span>
-          </div>
-        </div>
-      </div>}
+      {showPouup && <Sidebar setFilter={setFilter} filter={filter} isAscending={isAscending} setisAscending={setisAscending} applyFilter={applyFilter} clearFilter={clearFilter} setshowPouup={setshowPouup} />}
     </div>
   );
 }
